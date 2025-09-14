@@ -1,3 +1,5 @@
+import { API_URL, RES_PER_PAGE, KEY } from './config.js';
+import { AJAX } from './helpers.js';
 export const state = {
   recipe: {},
 };
@@ -18,13 +20,7 @@ const createRecipeObject = function (data) {
 
 export const loadRecipe = async function (id) {
   try {
-    const res = await fetch(
-      `https://forkify-api.jonas.io/api/v2/recipes/${id}`
-    );
-
-    const data = await res.json();
-
-    if (!res.ok) throw new Error(`${data.message} (${res.status})`);
+    const data = await AJAX(`${API_URL}${id}`);
 
     state.recipe = createRecipeObject(data);
     console.log(state.recipe);

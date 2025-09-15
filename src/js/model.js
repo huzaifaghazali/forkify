@@ -21,8 +21,8 @@ const createRecipeObject = function (data) {
 export const loadRecipe = async function (id) {
   try {
     const data = await AJAX(`${API_URL}${id}`);
-
     state.recipe = createRecipeObject(data);
+    
     console.log(state.recipe);
   } catch (err) {
     // Temp error handling

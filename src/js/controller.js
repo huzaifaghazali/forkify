@@ -5,10 +5,8 @@ import recipeView from './views/recipeView.js';
 
 const recipeContainer = document.querySelector('.recipe');
 
-
 // NEW API URL (instead of the one shown in the video)
 // https://forkify-api.jonas.io
-
 
 ///////////////////////////////////////
 
@@ -25,14 +23,13 @@ const controlRecipes = async function () {
 
     // 2) Rendering recipe
     recipeView.render(model.state.recipe);
-   
   } catch (error) {
-    // alert(error);
+    recipeView.renderError();
     console.log(error);
   }
 };
 
-['hashchange', 'load'].forEach(ev => window.addEventListener(ev, controlRecipes));
-
-// window.addEventListener('hashchange', controlRecipes);
-// window.addEventListener('load', controlRecipes);
+const init = function () {
+  recipeView.addHandlerRender(controlRecipes);
+};
+init();
